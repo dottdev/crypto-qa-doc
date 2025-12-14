@@ -58,6 +58,13 @@ TBD
   - 關鍵: 確保 Parquet 的 Partitioning 策略正確。按 Symbol/Year/Month 或 Symbol/Timeframe，這對 Polars 的讀取速度很重要。
 - [ ] K 線視覺化: 前端整合 Lightweight Charts，透過 Django Ninja 讀取 Parquet 並回傳給 SvelteKit 渲染。
 
+#### Phase 1.5: 前端礎建設 (Frontend Infrastructure)
+
+- [🚧] **App Shell 佈局實作**:
+  - [ ] 實作可折疊式 Sidebar (Collapsible Sidebar) 以最大化圖表空間。
+  - [ ] 實作 Status Bar 監控後端連線健康度 (`/api/sys/health`)。
+  - [ ] 整合 Shadcn `Dark Mode`，適應長時間看盤需求。
+
 #### Phase 2: 策略回測引擎 (Backtesting Engine)
 
 目標：驗證交易輯的獲利能力。此為 analysis 模組的核心。

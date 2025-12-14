@@ -98,8 +98,10 @@ docker compose --profile
 
 | 名稱 | API 整合 | 功能說明 | 狀態 |
 | :--- | :--- | :--- | :--- |
-| Navbar | - | 網站 Layout 設計 | ⏳ 未開始 |
-| TradingView | - | Lightweight Charts 整合 | ⏳ 未開始 |
+| **App Shell** | `/api/sys/health | 主版面佈局: Sidebar (導航) + Header (工具) + Status Bar (健康度) | ⏳ 未開始 |
+| **Settings** | `/api/sys/settings | 系統設定 | 🚧 進行中 |
+| **Dashboard** | - | 首頁儀表板 | ⏳ 未開始 |
+| **TradingView** | - | Lightweight Charts 整合 | ⏳ 未開始 |
 
 ## 📂 file structure
 
