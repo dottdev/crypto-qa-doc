@@ -38,19 +38,20 @@ TBD
 
 目標：建立可靠的本地數據池，並能在前端視覺化。重點在於 market_data 模組實作。
 
-- [x] **文檔中心建設 (Documentation)**:
-  - [x] 部署 MkDocs 至 GitHub Pages [Crypto-QA Documentation](https://your-username.github.io/crypto-qa-doc/)。
-  - [x] **API 文件抽離**: 將 API 規格從 README 移至獨立 MkDocs 專案，以便於維護與公開查閱。
-  - [ ] 整合 MANUAL.md 與 ROADMAP.md 至文檔站點。
-- [x] **系統基礎設定 (System Config)**:
-  - [x] 建立 `SystemSetting` Model (包含 audit 欄位: updated_by)。
-  - [x] 實作 CRUD API 統一回應格式 (`ApiResponse<T>`)。
-  - [x] 前端基礎建設 (`config.ts`, `types.ts`, `api/system.ts`)。
-  - [x] 前端設定頁面 (`/settings`) UI 整合與測試。
+- [✅] **文檔中心建設 (Documentation)**:
+  - [✅] 部署 MkDocs 至 GitHub Pages [Crypto-QA Documentation](https://your-username.github.io/crypto-qa-doc/)。
+  - [✅] **API 文件抽離**: 將 API 規格從 README 移至獨立 MkDocs 專案，以便於維護與公開查閱。
+  - [✅] 整合 MANUAL.md 與 ROADMAP.md 至文檔站點。
+- [🚧] **系統基礎設定 (System Config)**:
+  - [✅] 建立 `SystemSetting` Model (包含 audit 欄位: updated_by)。
+  - [✅] 實作 CRUD API 統一回應格式 (`ApiResponse<T>`)。
+  - [✅] 前端基礎建設 (`config.ts`, `types.ts`, `api/system.ts`): 完成 System Setting 的 API 封裝 (List/Get/Update)。
+  - [🚧] 前端設定頁面 (`/settings`) UI 整合與測試。
   - [ ] 完成 `ParquetConfigSchema` 驗證邏輯。
-- [ ] 交易所適配器 (Exchange Adaptor): 完善 `backend/services/exchanges/`，實作 `Binance/OKX/Coinbase` 的下載歷史數據。
-  - [x] 定義 `BaseExchangeClient` 介面。
-  - [ ] 實作 `BinanceClient` 基礎連線與設定 (使用 CCXT)
+- [🚧] 交易所適配器 (Exchange Adaptor): 完善 `backend/services/exchanges/`，實作 `Binance/OKX/Coinbase` 的下載歷史數據。
+  - [✅] 定義 `BaseExchangeClient` 介面。
+  - [🚧] 實作 `BinanceClient` 基礎連線與設定 (使用 CCXT)
+  - [ ] 優化：實作 Binance Vision (Bulk Data) 下載器，用於快速獲取歷史冷數據。
   - [ ] 實作 `get_markets` 與 `fetch_ohlcv` 的整合測試
   - [ ] 實作 OKX/Coinbase 的適配器
 - [ ] ETL 流程 (Data Pipeline): 建立定期任務 (可使用 Celery 或簡單的 Cron)，將原始數據清洗，並轉存為 Parquet。

@@ -30,6 +30,8 @@ class ApiResponse(Schema, Generic[T]):
 定義於 `backend/apps/system/api.py`。
 負責本系統相關設置
 
+* **初始化**: 系統啟動時會透過 `seed_settings` 指令自動寫入預設值。
+
 | Method | Endpoint | 功能說明 | Body / Query | 狀態 |
 | :--- | :--- | :--- | :--- | :--- |
 | **GET** | `/sys/health` | 系統健康檢查。 | docker Healthcheck 用 | ✅ 完成 |
@@ -101,7 +103,7 @@ class ExchangeResponse(Schema):
 class SyncRequest(Schema):
     source: str = "binance"
     symbol: str = "BTC/USDC"
-    market_type: str = "spot"
+    market_type: str = "spot"           # spot, usdt_futures, coin_futures
     timeframe: str = "1d"
     days: int = 30  # 預設補 30 天
 
