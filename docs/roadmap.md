@@ -41,8 +41,8 @@ TBD
 - [x] **系統基礎設定 (System Config)**:
   - [x] 建立 `SystemSetting` Model (包含 audit 欄位: updated_by)。
   - [x] 實作 CRUD API 統一回應格式 (`ApiResponse<T>`)。
-  - [x] 前端基礎建設 (`config.ts`, `types.ts`)。
-  - [ ] 前端設定頁面 (`/settings`) UI 整合與測試。
+  - [x] 前端基礎建設 (`config.ts`, `types.ts`, `api/system.ts`)。
+  - [x] 前端設定頁面 (`/settings`) UI 整合與測試。
   - [ ] 完成 `ParquetConfigSchema` 驗證邏輯。
 - [ ] 交易所適配器 (Exchange Adaptor): 完善 `backend/services/exchanges/`，實作 `Binance/OKX/Coinbase` 的下載歷史數據。
   - [x] 定義 `BaseExchangeClient` 介面。
