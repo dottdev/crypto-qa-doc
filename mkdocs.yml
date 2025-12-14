@@ -5,5 +5,8 @@ theme:
 doc_dir: docs
 
 nav:
-  - 首頁: index.md
-  - 路線圖: roadmap.md
+  - 首頁 (User Menual): index.md      # 對應 MANUAL.md
+  - 專案介紹 (Development):
+    - 開發環境與架構: development.md    # 對應原本的 README.md
+    - 系統 API: api.md                # 從 README 的 API 章節拆分出來
+  - 發展路線 (Roadmap): roadmap.md
