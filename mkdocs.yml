@@ -1,0 +1,9 @@
+site_name: 加密貨幣量化分析系統
+theme:
+  name: meterial
+
+doc_dir: docs
+
+nav:
+  - 首頁: index.md
+  - 路線圖: roadmap.md
