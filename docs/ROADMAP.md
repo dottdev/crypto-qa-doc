@@ -38,6 +38,10 @@ TBD
 
 目標：建立可靠的本地數據池，並能在前端視覺化。重點在於 market_data 模組實作。
 
+- [x] **文檔中心建設 (Documentation)**:
+  - [x] 部署 MkDocs 至 GitHub Pages [Crypto-QA Documentation](https://your-username.github.io/crypto-qa-doc/)。
+  - [x] **API 文件抽離**: 將 API 規格從 README 移至獨立 MkDocs 專案，以便於維護與公開查閱。
+  - [ ] 整合 MANUAL.md 與 ROADMAP.md 至文檔站點。
 - [x] **系統基礎設定 (System Config)**:
   - [x] 建立 `SystemSetting` Model (包含 audit 欄位: updated_by)。
   - [x] 實作 CRUD API 統一回應格式 (`ApiResponse<T>`)。
@@ -94,6 +98,7 @@ TBD
 ### Coding 原則
 
 - API 的 response 回傳，儘量用 Django-ninja 的格式。
+- 詳細 Response 格式規範請參閱 API.md。
 
 ### 架構原則
 
