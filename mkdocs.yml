@@ -1,8 +1,8 @@
 site_name: 加密貨幣量化分析系統
 theme:
-  name: meterial
+  name: material
 
-doc_dir: docs
+docs_dir: docs
 
 nav:
   - 首頁 (User Menual): index.md      # 對應 MANUAL.md
