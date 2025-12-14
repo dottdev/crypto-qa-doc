@@ -8,8 +8,8 @@ features:
 docs_dir: docs
 
 nav:
-  - 首頁 (User Menual): index.md      # 對應 MANUAL.md
-  - 專案介紹 (Development):
+  - 首頁: index.md      # 對應 MANUAL.md
+  - 專案介紹:
     - 專案簡介: README.md              # 對應原本的 README.md
-    - 發展路線 (Roadmap): ROADMAP.md
+    - 發展路線: ROADMAP.md
     - 系統 API: API.md                # 從 README 的 API 章節拆分出來
