@@ -61,6 +61,7 @@ TBD
 #### Phase 1.5: 前端礎建設 (Frontend Infrastructure)
 
 - [🚧] **App Shell 佈局實作**:
+  - [✅] 引入 Shadcn Sidebar (SidebarProcider, SidebarRoot, ...)。
   - [🚧] 實作響應式佈局: Sidebar (Rail) + Header + Status Bar。
   - [ ] 整合 Shadcn `Dark Mode`，適應長時間看盤需求。
 

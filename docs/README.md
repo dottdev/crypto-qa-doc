@@ -17,16 +17,16 @@ SvelteKit + shadcn 為前端使用者介面，並使用 Parquet 構建本地數�
 ## 🛠 Tech Stack
 
 - **Backend:** Python 3.12
-    - Django,
-    - Django Ninja (REST API)
-    - package management: Uv
+  - Django,
+  - Django Ninja (REST API)
+  - package management: Uv
 - **Frontend:** - Svelte 5 (Runs & Snippet syntax only)
-    - SvelteKit 2
-    - TypeScript
-    - TailwindCSS v4
-    - Shadcn/ui
-    - @lucide/svelte (Icons)
-    - package management: pnpm
+  - SvelteKit 2
+  - TypeScript
+  - TailwindCSS v4
+  - Shadcn/ui
+  - @lucide/svelte (Icons)
+  - package management: pnpm
 - **Data:** Parquet, Pandas/Polars, Postgres, Redis
 
 ---
@@ -107,7 +107,7 @@ docker compose --profile
 
 | 名稱 | API 整合 | 功能說明 | 狀態 |
 | :--- | :--- | :--- | :--- |
-| **App Shell** | `/api/sys/health | 主版面佈局: Sidebar (導航) + Header (工具) + Status Bar (健康度) | ⏳ 未開始 |
+| **App Shell** | `/api/sys/health | 主版面佈局: Sidebar (導航) + Header (工具) + Status Bar (健康度) | 🚧 進行中 |
 | **Settings** | `/api/sys/settings | 系統設定 | 🚧 進行中 |
 | **Dashboard** | - | 首頁儀表板 | ⏳ 未開始 |
 | **TradingView** | - | Lightweight Charts 整合 | ⏳ 未開始 |
