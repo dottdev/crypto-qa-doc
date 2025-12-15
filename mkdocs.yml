@@ -10,6 +10,6 @@ docs_dir: docs
 nav:
   - 首頁: index.md      # 對應 MANUAL.md
   - 專案介紹:
-    - 專案簡介: README.md              # 對應原本的 README.md
-    - 發展路線: ROADMAP.md
-    - 系統 API: API.md                # 從 README 的 API 章節拆分出來
+    - 專案簡介: readme.md              # 對應原本的 README.md
+    - 發展路線: roadmap.md
+    - 系統 API: api.md                # 從 README 的 API 章節拆分出來
