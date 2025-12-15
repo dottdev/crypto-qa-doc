@@ -1,7 +1,7 @@
 site_name: 加密貨幣量化分析系統
 theme:
   name: material
-features:
+  features:
     - navigation.instant      # 改善導航效能
     - navigation.tabs         # 選用：分頁導航
 
