@@ -49,8 +49,8 @@ TBD
   - [ ] 完成 `ParquetConfigSchema` 驗證邏輯。
 - [🚧] 交易所適配器 (Exchange Adaptor): 完善 `backend/services/exchanges/`，實作 `Binance/OKX/Coinbase` 的下載歷史數據。
   - [✅] 定義 `BaseExchangeClient` 介面。
-  - [🚧] 實作 `BinanceClient` 基礎連線與設定 (使用 CCXT)
-  - [🚧] API 介面標準化 (皆要由 `ApiResponse` 包裝回傳 JSON)
+  - [✅] 實作 `BinanceClient` 基礎連線與設定 (使用 CCXT)
+  - [✅] API 介面標準化 (皆要由 `ApiResponse` 包裝回傳 JSON)
   - [ ] 優化：實作 Binance Vision (Bulk Data) 下載器，用於快速獲取歷史冷數據。
   - [ ] 實作 `get_markets` 與 `fetch_ohlcv` 的整合測試
   - [ ] 實作 OKX/Coinbase 的適配器

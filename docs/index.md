@@ -96,3 +96,9 @@ docker compose exec backend uv run python manage.py migrate
 ```
 
 ---
+
+# Part 3: 發展人員指南 (Developer Guide)
+
+## 新增交易所
+- 必須繼承 BaseExchangeClient，並實作 fetch_ohlcv 與 download_history。
+- 務必使用 async with 呼叫以避免連線洩漏。
