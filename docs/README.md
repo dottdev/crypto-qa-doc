@@ -16,8 +16,17 @@ SvelteKit + shadcn 為前端使用者介面，並使用 Parquet 構建本地數�
 
 ## 🛠 Tech Stack
 
-- **Backend:** Python 3.12, Django, Django Ninja, Uv
-- **Frontend:** Svelte 5, SvelteKit, TypeScript, TailwindCSS, Shadcn/ui
+- **Backend:** Python 3.12
+    - Django,
+    - Django Ninja (REST API)
+    - package management: Uv
+- **Frontend:** - Svelte 5 (Runs & Snippet syntax only)
+    - SvelteKit 2
+    - TypeScript
+    - TailwindCSS v4
+    - Shadcn/ui
+    - @lucide/svelte (Icons)
+    - package management: pnpm
 - **Data:** Parquet, Pandas/Polars, Postgres, Redis
 
 ---
@@ -184,6 +193,8 @@ crypto-qa/
     │
     └── 📂 src/
         ├── app.html
+        ├── app.css        # Application 的主要介面規則
+        │
         ├── 📂 lib/        # Svelte 核心邏輯庫
         │   ├── 📂 api/    # 封裝 fetch 請求 (對接 Django Ninja)
         │   │   ├── types.ts           # 呼叫後端 API 的參數設定
@@ -191,6 +202,10 @@ crypto-qa/
         │   │   └── market.ts          # 處理 market_data/api.py 的請求
         │   │
         │   ├── 📂 components/
+        │   │   ├── 📂 layout/         # Layout 專屬組件，避免汗染全域元件
+        │   │   │   ├── app-sidebar.svelte      # Sidebar 邏輯
+        │   │   │   └── app-header.svelte       # Top Navigator
+        │   │   │
         │   │   ├── 📂 data-manager/   # Data Manager 專屬組件，避免汗染全域元件
         │   │   │   ├── exchange-card.svelte        # 單個交易所的狀態卡片
         │   │   │   ├── add-exchange-dialog.svelte  # 搜並新增交易所的彈窗

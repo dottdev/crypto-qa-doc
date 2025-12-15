@@ -45,12 +45,12 @@ TBD
 - [🚧] **系統基礎設定 (System Config)**:
   - [✅] 建立 `SystemSetting` Model (包含 audit 欄位: updated_by)。
   - [✅] 實作 CRUD API 統一回應格式 (`ApiResponse<T>`)。
-  - [✅] 前端基礎建設 (`config.ts`, `types.ts`, `api/system.ts`): 完成 System Setting 的 API 封裝 (List/Get/Update)。
   - [🚧] 前端設定頁面 (`/settings`) UI 整合與測試。
   - [ ] 完成 `ParquetConfigSchema` 驗證邏輯。
 - [🚧] 交易所適配器 (Exchange Adaptor): 完善 `backend/services/exchanges/`，實作 `Binance/OKX/Coinbase` 的下載歷史數據。
   - [✅] 定義 `BaseExchangeClient` 介面。
   - [🚧] 實作 `BinanceClient` 基礎連線與設定 (使用 CCXT)
+  - [🚧] API 介面標準化 (皆要由 `ApiResponse` 包裝回傳 JSON)
   - [ ] 優化：實作 Binance Vision (Bulk Data) 下載器，用於快速獲取歷史冷數據。
   - [ ] 實作 `get_markets` 與 `fetch_ohlcv` 的整合測試
   - [ ] 實作 OKX/Coinbase 的適配器
@@ -61,8 +61,7 @@ TBD
 #### Phase 1.5: 前端礎建設 (Frontend Infrastructure)
 
 - [🚧] **App Shell 佈局實作**:
-  - [ ] 實作可折疊式 Sidebar (Collapsible Sidebar) 以最大化圖表空間。
-  - [ ] 實作 Status Bar 監控後端連線健康度 (`/api/sys/health`)。
+  - [🚧] 實作響應式佈局: Sidebar (Rail) + Header + Status Bar。
   - [ ] 整合 Shadcn `Dark Mode`，適應長時間看盤需求。
 
 #### Phase 2: 策略回測引擎 (Backtesting Engine)
@@ -105,8 +104,16 @@ TBD
 
 ### Coding 原則
 
+#### 後端開發規範 (Backend Guidelines)
 - API 的 response 回傳，儘量用 Django-ninja 的格式。
 - 詳細 Response 格式規範請參閱 API.md。
+
+#### 前端開發規範 (Frontend Guidelines)
+- **Svelte 5 Native**: 全面採用 Svelte 5 語法。
+  - 狀態管理: 使用 `$state`, `$derived`, `$prop` 取代舊版 Stores。
+  - 元件傳遞: 使用 `${@render children()} 取代 `<slot />`。
+  - 路由狀態: 使用 `$app/state` (如 `page`) 取代 `$app/stores`。
+- **Icons**: 使用官方 `@lucide/svelte` 套件 (非舊版 `lucide-svelte`)
 
 ### 架構原則
 
@@ -121,7 +128,7 @@ TBD
   - schemas.py 負責定義 api.py 所使用的 Schema
 - 前端介面 (TradingView)
   - Lightweight Charts 在處理「即時更新」時，注意 Reactivity。
-  - 儘量使用 Svelte 5 的新特性處理。
+  - 儘量使用 Svelte 5 + Tailwind v4 的新特性以及最新版的 shadcn 原則處理。
 - 預留傳統金融的延展性 (TradFi)
   - 需要先加入 asset_type (Crypto/Stock/Forex) 和 market_hours 在 Schema。
   - 提供傳統金融非連續性的相關設置。

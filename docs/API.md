@@ -70,49 +70,74 @@ class SystemSettingListResponse(ApiSchema[list[SystemSettingOuto]]):
 
 | Method | Endpoint | 功能說明 | Body / Query | 狀態 |
 | :--- | :--- | :--- | :--- | :--- |
-| **GET** | `/mkt/sources` | 獲取支援的交易所列表 | - | 🚧 進行中 |
-| **GET** | `/mkt/sources/discover` | 列出CCXT可用的交易所 | - | ⏳ 未開始 |
-| **POST** | `/mkt/sources/{exchange_id}/enable` | 啟用交易所資料 | - | ⏳ 未開始 |
-| **GET** | `/mkt/test-connection` | 測試連線 | - | ⏳ 未開始 |
+| **GET** | `/mkt/sources` | 獲取支援的交易所列表 | - | ✅ 完成 |
+| **GET** | `/mkt/sources/discover` | 列出CCXT可用的交易所 | - | 🚧 進行中 |
+| **POST** | `/mkt/sources/{exchange_id}/enable` | 啟用交易所資料 | - | 🚧 進行中 |
+| **GET** | `/mkt/test-connection` | 測試連線 | - | 🚧 進行中 |
 | **GET** | `/mkt/symbols` | 搜尋/列出交易所的交易對 | `?exchange=binance&q=BTC` | 🚧 進行中 |
 | **POST** | `/mkt/track` | 將交易對加入本地追蹤清單 (存入 DB) | `{ "symbol": "BTC/USDT", "source": "binance" }` | ⏳ 未開始 |
 | **GET** | `/mkt/tracked` | 獲取目前已追蹤的交易對狀態 (數據完整性) | - | ⏳ 未開始 |
 | **GET** | `/mkt/candles` | **【核心】** 讀取 K 線數據 (供前端繪圖) | `?symbol=BTC/USDT&tf=1h&start=...&end=...` | ⏳ 未開始 |
-| **GET** | `/mkt/sync-test` | 觸發下載並存檔 | - | ⏳ 未開始 |
-| **POST** | `/mkt/sync` | 觸發手動數據補全任務 (下載歷史數據) | `SyncRequest` | ⏳ 未開始 |
+| **GET** | `/mkt/sync-test` | 觸發下載並存檔 | - | 🚧 進行中 |
+| **POST** | `/mkt/sync` | 觸發手動數據補全任務 (下載歷史數據) | `SyncRequest` | 🚧 進行中 |
 
 ### Market Data Schemas
 
 ```python
 # 讀取 K 線回傳格式 (針對 TradingView Lightweight Charts 優化)
-class CandleResponse(Schema):
-    time: int   # Timestamp (Unix epoch)
-    open: float
-    high: float
-    low: float
-    close: float
-    volume: float
+class SyncRequest(Schema):
+    source: str = "binance"
+    symbol: str = "BTC/USDT"
+    market_type: str = "spot"
+    timeframe: str = "1d"
+    days: int = 30
 
-class ExchangeResponse(Schema):
-    id: str                             # "binance"
-    name: str                           # "Binance 幣安"
+# --- Output Schemas (Data Payload)
+
+class ExchangeOut(Schema):
+    id: str         # "binance"
+    name: str       # "Binance 幣安"
     supported_market_types: list[str]   # ["spot", "usdt_futures"]
     is_active: bool
 
-# 數據同步請求
-class SyncRequest(Schema):
-    source: str = "binance"
-    symbol: str = "BTC/USDC"
-    market_type: str = "spot"           # spot, usdt_futures, coin_futures
-    timeframe: str = "1d"
-    days: int = 30  # 預設補 30 天
+class ExchangeListResponse(ApiResponse[list[ExchangeOut]]):
+    pass
 
-# 數據內容
-class SymbolResponse(Schema):
+class DiscoveryOut(Schema):
+    id: str
+    name: str
+    has_ohlcv: bool
+    in_system: bool
+
+class DiscoveryResponse(ApiResponse[list[DiscoveryOut]]):
+    pass
+
+class SymbolOut(Schema):
     id: int             # 對應 Symbol 的自動 id
     name: str           # 對應 Symbol.name
     exchange_id: str    # Django Ninja 可自動對應到 s.exchange_id
-    market_type: str    # 原本的 market_type
+
+    # 原本的 market_type
+    market_type: str
+
+class SymbolResponse(ApiResponse[SymbolOut]):
+    pass
+
+class TestConnectionOut(Schema):
+    exchange: str
+    url_used: str
+    symbols_count: int
+    symbols_sample: list[Any]
+
+class SyncTestOut(Schema):
+    symbol: str
+    rows: int
+    path: str
+
+class SyncJobOut(Schema):
+    taks_id: str | None = None
+    status: str
+    details: Any = None
 ```
 
 ## 3. Analysis (量化分析與回測)
