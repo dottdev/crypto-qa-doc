@@ -71,26 +71,35 @@ class SystemSettingListResponse(ApiSchema[list[SystemSettingOut]]):
 | Method | Endpoint | 功能說明 | Body / Query | 狀態 |
 | :--- | :--- | :--- | :--- | :--- |
 | **GET** | `/mkt/sources` | 獲取支援的交易所列表 | - | ✅ 完成 |
-| **GET** | `/mkt/sources/discover` | 列出CCXT可用的交易所 | - | 🚧 進行中 |
+| **GET** | `/mkt/sources/discover` | 列出CCXT可用的交易所 | - | ✅ 完成 |
 | **POST** | `/mkt/sources/{exchange_id}/enable` | 啟用交易所資料 | - | 🚧 進行中 |
-| **GET** | `/mkt/test-connection` | 測試連線 | - | 🚧 進行中 |
+| **GET** | `/mkt/test-connection` | 測試連線 | - | ✅ 完成 |
 | **GET** | `/mkt/symbols` | 搜尋/列出交易所的交易對 | `?exchange=binance&q=BTC` | 🚧 進行中 |
 | **POST** | `/mkt/track` | 將交易對加入本地追蹤清單 (存入 DB) | `{ "symbol": "BTC/USDT", "source": "binance" }` | ⏳ 未開始 |
 | **GET** | `/mkt/tracked` | 獲取目前已追蹤的交易對狀態 (數據完整性) | - | ⏳ 未開始 |
 | **GET** | `/mkt/candles` | **【核心】** 讀取 K 線數據 (供前端繪圖) | `?symbol=BTC/USDT&tf=1h&start=...&end=...` | ⏳ 未開始 |
 | **GET** | `/mkt/sync-test` | 觸發下載並存檔 | - | 🚧 進行中 |
-| **POST** | `/mkt/sync` | 觸發手動數據補全任務 (下載歷史數據) | `SyncRequest` | 🚧 進行中 |
+| **POST** | `/mkt/sync` | 觸發手動數據補全任務 | `SyncRequest` | 🚧 進行中 |
+| **POST** | `/mkt//sync/history-bulk` | 下載歷史數據 | `HistorySyncRequest` | 🚧 進行中 |
 
 ### Market Data Schemas
 
 ```python
-# 讀取 K 線回傳格式 (針對 TradingView Lightweight Charts 優化)
+# -- Input Schemas
 class SyncRequest(Schema):
     source: str = "binance"
     symbol: str = "BTC/USDT"
     market_type: str = "spot"
     timeframe: str = "1d"
     days: int = 30
+
+class HistorySyncRequest(Schema):
+    symbol: str = "BTCUSDT"
+    market_type: str = "spot"   # spot, um (usdt-m future)
+    timeframe: str = "1h"
+    start_year: int = 2020
+    end_year: int = 2023
+    months: list[int] = []      # 若為空則下載整年
 
 # --- Output Schemas (Data Payload)
 

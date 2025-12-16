@@ -24,6 +24,8 @@
   - [x] `BaseExchangeClient` 介面定義。
   - [x] `BinanceClient` 基礎連線與設定 (使用 CCXT)
   - [ ] 優化：實作 Binance Vision (Bulk Data) 下載器，用於快速獲取歷史冷數據。
+    - [ ] 建立 `parquet_cold` Hive Partitioning 結構。
+    - [ ] 驗證Parquet (Hive Partition) 讀取效能。
   - [ ] 支援 OKX/Coinbase 的適配器
 - [ ] **ETL 流程 (Data Pipeline)**: 建立定期任務 (可使用 Celery 或簡單的 Cron)，將原始數據清洗，並轉存為 Parquet。
   - 關鍵: 確保 Parquet 的 Partitioning 策略正確。按 Symbol/Year/Month 或 Symbol/Timeframe，這對 Polars 的讀取速度很重要。
