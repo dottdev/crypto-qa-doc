@@ -14,7 +14,7 @@
 - [x] **文檔中心建設 (Documentation)**:
   - [x] 部署 MkDocs 至 GitHub Pages [Crypto-QA Documentation](https://your-username.github.io/crypto-qa-doc/)。
   - [x] **API 文件抽離**: 將 API 規格從 README 移至獨立 MkDocs 專案，以便於維護與公開查閱。
-    - [x] 分離 User Manual 與 Developr Guide。
+    - [x] 分離 User Manual 與 Developer Guide。
 - [ ] **系統基礎設定 (System Config)**:
   - [x] 建立 `SystemSetting` Model (包含 audit 欄位: updated_by)。
   - [x] API 介面標準化 CRUD API 統一回應格式 (`ApiResponse<T>`)。
@@ -32,7 +32,7 @@
 ### Phase 1.5: 前端礎建設 (Frontend Infrastructure)
 
 - [ ] **App Shell 佈局實作**:
-  - [x] 引入 Shadcn Sidebar (SidebarProcider, SidebarRoot, ...)。
+  - [x] 引入 Shadcn Sidebar (SidebarProvider, SidebarRoot, ...)。
   - [x] 實作響應式佈局: Sidebar (Rail) + Header + Status Bar。
   - [ ] 整合 Shadcn `Dark Mode`，適應長時間看盤需求。
   - [ ] 未來規劃: 於量化回測頁面 (/backtest) 引入 Resizable Panel 以支援自由調整面板大小。
@@ -52,7 +52,7 @@
 - [ ] **模擬交易所 (Paper Exchange)**: 模擬訂單搓合、滑點與手續費。
 - [ ] **事件驅動引擎 (Event-Driven Engine)**: 處理 WebSocket 即時報價 (Tick-by-tick)。
   這與 Phase 2 的向量化回測不同，這是逐筆 (Tick-by-tick) 或逐根 K 線 (Bar-by-bar) 的處理。
-- [ ] **即時監控儀表板 (Dashboard)**: SvelteKit 透過 SSE (Servver-Sent Events) 或 WebSocket 顯示即時報價與模擬單狀態。
+- [ ] **即時監控儀表板 (Dashboard)**: SvelteKit 透過 SSE (Server-Sent Events) 或 WebSocket 顯示即時報價與模擬單狀態。
 
 ### Phase 4: 實盤自動交易 (Live Trading)
 

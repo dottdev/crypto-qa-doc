@@ -1,6 +1,6 @@
 # crypto-qa
 
-Crypto Quant Analysys 是一個量化交易分析平台，採用 Django Ninja 為後端，
+Crypto Quant Analysis 是一個量化交易分析平台，採用 Django Ninja 為後端，
 SvelteKit + shadcn 為前端使用者介面，並使用 Parquet 構建本地數據池，
 旨在於提供高效的加密貨幣數據清洗、回測與即時監控，並進一步達到可以自動交易功能。
 

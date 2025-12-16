@@ -59,7 +59,7 @@ class SystemSettingOut(Schema):
 class SystemSettingResponse(ApiSchema[SystemSettingOut]):
     pass
 
-class SystemSettingListResponse(ApiSchema[list[SystemSettingOuto]]):
+class SystemSettingListResponse(ApiSchema[list[SystemSettingOut]]):
     pass
 ```
 
@@ -135,7 +135,7 @@ class SyncTestOut(Schema):
     path: str
 
 class SyncJobOut(Schema):
-    taks_id: str | None = None
+    task_id: str | None = None
     status: str
     details: Any = None
 ```
