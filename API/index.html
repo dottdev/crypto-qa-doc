@@ -1,0 +1,1312 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ROADMAP/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>系統 API - 加密貨幣量化分析系統</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-design" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="加密貨幣量化分析系統" class="md-header__button md-logo" aria-label="加密貨幣量化分析系統" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            加密貨幣量化分析系統
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              系統 API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../README.md" class="md-tabs__link">
+          
+  
+  
+  專案介紹
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="加密貨幣量化分析系統" class="md-nav__button md-logo" aria-label="加密貨幣量化分析系統" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    加密貨幣量化分析系統
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案介紹
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    專案介紹
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案簡介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ROADMAP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    發展路線
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系統 API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系統 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ai-development-constraints-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ AI Development Constraints (AI 開發限制)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envelope-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        統一回應格式 (Envelope Pattern)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="統一回應格式 (Envelope Pattern)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Authentication (身份驗證)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-system-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. System Config (系統設定)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. System Config (系統設定)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Schemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-market-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Market Data (市場數據)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Market Data (市場數據)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-data-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Data Schemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Analysis (量化分析與回測)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Analysis (量化分析與回測)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analysis-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis Schemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-trading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Trading (實盤/模擬交易)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Trading (實盤/模擬交易)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trading-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trading Schemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ai-development-constraints-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ AI Development Constraints (AI 開發限制)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envelope-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        統一回應格式 (Envelope Pattern)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="統一回應格式 (Envelope Pattern)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Authentication (身份驗證)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-system-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. System Config (系統設定)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. System Config (系統設定)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Schemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-market-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Market Data (市場數據)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Market Data (市場數據)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-data-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Data Schemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Analysis (量化分析與回測)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Analysis (量化分析與回測)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analysis-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis Schemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-trading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Trading (實盤/模擬交易)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Trading (實盤/模擬交易)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trading-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trading Schemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="api-design">🔌 API design</h1>
+<p>所有 API 均基於 Django Ninja，預設前綴為 <code>/api</code></p>
+<h2 id="ai-development-constraints-ai">⚠️ AI Development Constraints (AI 開發限制)</h2>
+<blockquote>
+<p><strong>[IMPORTANT]</strong></p>
+</blockquote>
+<ul>
+<li>All REST API endpoints <strong>MUST</strong> use the <code>ApiResponse[T] wrapper defined in</code>backend.core.schemas`.<ol>
+<li>✅ <strong>Correct</strong>: <code>def get_item(...) -&gt; ApiResponse[ItemSchema]:</code></li>
+<li>❌ <strong>Incorrect</strong>: <code>def get_item(...) -&gt; ItemSchema:</code></li>
+</ol>
+</li>
+<li><strong>Error Handling</strong>:<ol>
+<li>Use <code>django.shortcuts.get_object_or_404</code>.</li>
+<li>For business logic errors, return `ApiResponse(code=-1, message="...") instead of raising 500 exceptions.</li>
+</ol>
+</li>
+</ul>
+<h2 id="envelope-pattern">統一回應格式 (Envelope Pattern)</h2>
+<p>為了前後端串接的一致性，所有 API (除特定二進位流或非標準介面) 皆採用以下 JSON 結構：</p>
+<pre><code class="language-json">{
+    &quot;code&quot;: 0,              // 0: 成功, -1: 錯誤, &gt;0: 其他錯誤代碼
+    &quot;message&quot;: &quot;success&quot;,   // 人類可讀訊息
+    &quot;data&quot;: { ... }         // 實際資料 payload
+}
+</code></pre>
+<p>以下定義核心的 Request/Response Schema</p>
+<h3 id="core-schema">Core Schema</h3>
+<pre><code class="language-python">class ApiResponse(Schema, Generic[T]):
+    code: int = 0               # 0: 成功, -1: 錯誤, &gt;0: 特定錯誤代碼
+    message: str = &quot;success&quot;
+    data: Optional[T] = None
+</code></pre>
+<h2 id="0-authentication">0. Authentication (身份驗證)</h2>
+<p>系統採用 JWT (JSON Web Token) 進行驗證。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Endpoint</th>
+<th style="text-align: left;">功能說明</th>
+<th style="text-align: left;">Body</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>POST</strong></td>
+<td style="text-align: left;"><code>/auth/token</code></td>
+<td style="text-align: left;">登入並獲取 Access/Refresh Token</td>
+<td style="text-align: left;"><code>{username, password}</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>POST</strong></td>
+<td style="text-align: left;"><code>/auth/token/refresh</code></td>
+<td style="text-align: left;">刷新 Access Token</td>
+<td style="text-align: left;"><code>{refresh}</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/auth/me</code></td>
+<td style="text-align: left;">獲取當前登入者資訊與權限群組</td>
+<td style="text-align: left;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-system-config">1. System Config (系統設定)</h2>
+<p>定義於 <code>backend/apps/system/api.py</code>。
+負責本系統相關設置</p>
+<ul>
+<li><strong>初始化</strong>: 系統啟動時會透過 <code>seed_settings</code> 指令自動寫入預設值。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Endpoint</th>
+<th style="text-align: left;">功能說明</th>
+<th style="text-align: left;">Body / Query</th>
+<th style="text-align: left;">狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/sys/health</code></td>
+<td style="text-align: left;">系統健康檢查。</td>
+<td style="text-align: left;">docker Healthcheck 用</td>
+<td style="text-align: left;">✅ 完成</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/sys/info</code></td>
+<td style="text-align: left;">系統資源狀態 (CPU, Memory, Disk)</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/sys/settings</code></td>
+<td style="text-align: left;">列出系統所有設定。</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">✅ 完成</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/sys/settings/{key}</code></td>
+<td style="text-align: left;">獲取單一設定詳情。</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">✅ 完成</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PUT</strong></td>
+<td style="text-align: left;"><code>/sys/settings/{key}</code></td>
+<td style="text-align: left;">更新系統設定。</td>
+<td style="text-align: left;"><code>SystemSettingUpdateSchema</code></td>
+<td style="text-align: left;">✅ 完成</td>
+</tr>
+</tbody>
+</table>
+<h3 id="system-schemas">System Schemas</h3>
+<pre><code class="language-python"># Update Request (Input)
+class SystemSettingUpdateSchema(Schema):
+    value: Any                  # 允許不同型態 (int, str, bool, dict)，後端需做驗證
+    description: Optional[str] = None
+
+# Response Object (Output)
+class SystemSettingOut(Schema):
+    key: str
+    value: Any                          # 不同 key 的結構可能不同
+    description: str
+    updated_at: datetime
+    updated_by: Optional[str] = None    # 回傳 Username 或 User ID
+
+class SystemSettingResponse(ApiSchema[SystemSettingOut]):
+    pass
+
+class SystemSettingListResponse(ApiSchema[list[SystemSettingOut]]):
+    pass
+</code></pre>
+<h2 id="2-market-data">2. Market Data (市場數據)</h2>
+<p>定義於 <code>backend/apps/market_data/api.py</code>。
+負責數據清洗、儲存與讀取 (Parquet)。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Endpoint</th>
+<th style="text-align: left;">功能說明</th>
+<th style="text-align: left;">Body / Query</th>
+<th style="text-align: left;">狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/mkt/sources</code></td>
+<td style="text-align: left;">獲取支援的交易所列表</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">✅ 完成</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/mkt/sources/discover</code></td>
+<td style="text-align: left;">列出CCXT可用的交易所</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">✅ 完成</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>POST</strong></td>
+<td style="text-align: left;"><code>/mkt/sources/{exchange_id}/enable</code></td>
+<td style="text-align: left;">啟用交易所資料</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">🚧 進行中</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/mkt/test-connection</code></td>
+<td style="text-align: left;">測試連線</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">✅ 完成</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/mkt/symbols</code></td>
+<td style="text-align: left;">搜尋/列出交易所的交易對</td>
+<td style="text-align: left;"><code>?exchange=binance&amp;q=BTC</code></td>
+<td style="text-align: left;">🚧 進行中</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>POST</strong></td>
+<td style="text-align: left;"><code>/mkt/track</code></td>
+<td style="text-align: left;">將交易對加入本地追蹤清單 (存入 DB)</td>
+<td style="text-align: left;"><code>{ "symbol": "BTC/USDT", "source": "binance" }</code></td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/mkt/tracked</code></td>
+<td style="text-align: left;">獲取目前已追蹤的交易對狀態 (數據完整性)</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/mkt/candles</code></td>
+<td style="text-align: left;"><strong>【核心】</strong> 讀取 K 線數據 (供前端繪圖)</td>
+<td style="text-align: left;"><code>?symbol=BTC/USDT&amp;tf=1h&amp;start=...&amp;end=...</code></td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/mkt/sync-test</code></td>
+<td style="text-align: left;">觸發下載並存檔</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">🚧 進行中</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>POST</strong></td>
+<td style="text-align: left;"><code>/mkt/sync</code></td>
+<td style="text-align: left;">觸發手動數據補全任務</td>
+<td style="text-align: left;"><code>SyncRequest</code></td>
+<td style="text-align: left;">🚧 進行中</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>POST</strong></td>
+<td style="text-align: left;"><code>/mkt//sync/history</code></td>
+<td style="text-align: left;">下載歷史數據</td>
+<td style="text-align: left;"><code>HistorySyncRequest</code></td>
+<td style="text-align: left;">🚧 進行中</td>
+</tr>
+</tbody>
+</table>
+<h3 id="market-data-schemas">Market Data Schemas</h3>
+<pre><code class="language-python"># -- Input Schemas
+class SyncRequest(Schema):
+    source: str = &quot;binance&quot;
+    symbol: str = &quot;BTC/USDT&quot;
+    market_type: str = &quot;spot&quot;
+    timeframe: str = &quot;1d&quot;
+    days: int = 30
+
+class HistorySyncRequest(Schema):
+    symbol: str = &quot;BTCUSDT&quot;
+    market_type: str = &quot;spot&quot;   # spot, um (usdt-m future)
+    timeframe: str = &quot;1h&quot;
+    start_year: int = 2020
+    end_year: int = 2023
+    months: list[int] = []      # 若為空則下載整年
+    keep_raw: bool = True       # 是否保留原始檔
+    asset_class: str = &quot;crypto&quot; # 預留 TradFi 欄位
+
+# --- Output Schemas (Data Payload)
+
+class ExchangeOut(Schema):
+    id: str         # &quot;binance&quot;
+    name: str       # &quot;Binance 幣安&quot;
+    supported_market_types: list[str]   # [&quot;spot&quot;, &quot;usdt_futures&quot;]
+    is_active: bool
+
+class ExchangeListResponse(ApiResponse[list[ExchangeOut]]):
+    pass
+
+class DiscoveryOut(Schema):
+    id: str
+    name: str
+    has_ohlcv: bool
+    in_system: bool
+
+class DiscoveryResponse(ApiResponse[list[DiscoveryOut]]):
+    pass
+
+class SymbolOut(Schema):
+    id: int             # 對應 Symbol 的自動 id
+    name: str           # 對應 Symbol.name
+    exchange_id: str    # Django Ninja 可自動對應到 s.exchange_id
+
+    # 原本的 market_type
+    market_type: str
+
+class SymbolResponse(ApiResponse[SymbolOut]):
+    pass
+
+class TestConnectionOut(Schema):
+    exchange: str
+    url_used: str
+    symbols_count: int
+    symbols_sample: list[Any]
+
+class SyncTestOut(Schema):
+    symbol: str
+    rows: int
+    path: str
+
+class SyncJobOut(Schema):
+    task_id: str | None = None
+    status: str
+    details: Any = None
+</code></pre>
+<h2 id="3-analysis">3. Analysis (量化分析與回測)</h2>
+<p>定義於 <code>backend/apps/analysis/api.py</code>。
+負責技術指標計算與策略回測。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Endpoint</th>
+<th style="text-align: left;">功能說明</th>
+<th style="text-align: left;">Body / Query</th>
+<th style="text-align: left;">狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/ana/indicators</code></td>
+<td style="text-align: left;">獲取系統支援的技術指標清單 (如 MA, RSI)</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>POST</strong></td>
+<td style="text-align: left;"><code>/ana/preview</code></td>
+<td style="text-align: left;">快速計算指標並回傳 (不存 DB，前端預覽用)</td>
+<td style="text-align: left;"><code>{ "symbol": "BTC/USDT", "indicators": [...] }</code></td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>POST</strong></td>
+<td style="text-align: left;"><code>/ana/backtest/run</code></td>
+<td style="text-align: left;"><strong>【核心】</strong> 提交回測任務</td>
+<td style="text-align: left;"><code>BacktestConfigSchema</code></td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/ana/backtest/{id}</code></td>
+<td style="text-align: left;">查詢回測狀態與簡易結果</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/ana/backtest/{id}/result</code></td>
+<td style="text-align: left;">獲取詳細回測報告 (權益曲線、交易明細)</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+</tbody>
+</table>
+<h3 id="analysis-schemas">Analysis Schemas</h3>
+<pre><code class="language-python"># 回測設定
+class BacktestConfigSchema(Schema):
+    strategy_name: str       # 例如 &quot;RsiStrategy&quot;
+    symbol: str              # &quot;ETH/USDT&quot;
+    timeframe: str           # &quot;15m&quot;
+    start_time: datetime
+    end_time: datetime
+    initial_capital: float   # 初始資金
+    params: Dict[str, Any]   # 策略參數 e.g. {&quot;rsi_period&quot;: 14, &quot;overbought&quot;: 70}
+
+# 回測結果摘要
+class BacktestResultSchema(Schema):
+    id: str
+    status: str              # &quot;pending&quot;, &quot;running&quot;, &quot;completed&quot;, &quot;failed&quot;
+    total_return: float      # 總報酬率 %
+    max_drawdown: float      # 最大回撤 %
+    win_rate: float          # 勝率
+    total_trades: int        # 總交易次數
+</code></pre>
+<h2 id="4-trading">4. Trading (實盤/模擬交易)</h2>
+<p>定義於 <code>backend/apps/trading/api.py</code>。負責對接交易所 API 進行下單與帳戶管理。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Endpoint</th>
+<th style="text-align: left;">功能說明</th>
+<th style="text-align: left;">Body / Query</th>
+<th style="text-align: left;">狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/trade/accounts</code></td>
+<td style="text-align: left;">獲取交易所帳戶餘額與權益</td>
+<td style="text-align: left;"><code>?exchange=binance</code></td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/trade/positions</code></td>
+<td style="text-align: left;">獲取當前持倉 (Positions)</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>POST</strong></td>
+<td style="text-align: left;"><code>/trade/order</code></td>
+<td style="text-align: left;">發送下單請求 (市價/限價)</td>
+<td style="text-align: left;"><code>OrderCreateSchema</code></td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DELETE</strong></td>
+<td style="text-align: left;"><code>/trade/order/{id}</code></td>
+<td style="text-align: left;">取消訂單</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GET</strong></td>
+<td style="text-align: left;"><code>/trade/history</code></td>
+<td style="text-align: left;">獲取歷史成交紀錄</td>
+<td style="text-align: left;"><code>?limit=50</code></td>
+<td style="text-align: left;">⏳ 未開始</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trading-schemas">Trading Schemas</h3>
+<pre><code class="language-python"># 下單請求
+class OrderCreateSchema(Schema):
+    symbol: str
+    side: str                # &quot;buy&quot; or &quot;sell&quot;
+    type: str                # &quot;limit&quot; or &quot;market&quot;
+    quantity: float
+    price: Optional[float]   # 市價單可為 None
+    leverage: int = 1        # 槓桿倍數
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tabs"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
