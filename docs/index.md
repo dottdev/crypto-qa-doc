@@ -5,9 +5,22 @@
 1. [交易員指南 (Trader's Guide)](#part-1-交易員指南-traders-guide)：針對策略開發、回測與日常監控的操作。
 2. [管理員指南 (Admin's Guide)](#part-2-管理員指南-admins-guide)：針對系統設定、數據維護與環境部署的操作。
 
+目前所有功能都尚未成熟，也希望在開發的同時一邊有實際進度和功能討論的交流。
+
 ---
 
-# Part 1: 交易員指南 (Trader's Guide)
+## 0. 登入與權限 (Login & Access)
+
+**路徑**: `/login`
+
+系統依據帳號權限分為兩種角色：
+
+* **Trader**: 僅可存取 Dashboard、回測與即時監控功能。
+* **Admin**: 擁有所有權限，包含系統設定 (`/settings`) 與資料源管理 (`/data-manager`)。
+
+> **注意**: 若您登入後發現側邊欄缺少部分功能，請確認您的帳號是否具備 Admin 權限。
+
+## Part 1: 交易員指南 (Trader's Guide)
 
 此區塊說明如何使用平台進行市場分析、回測與策略執行。
 
@@ -18,7 +31,7 @@
 * **總覽**: 顯示目前帳戶權益、活躍策略數量與損益狀態。
 * **導航**: 點擊左上角圖示可收合側邊欄 (Sidebar)，提供更大的圖表檢視空間。
 
-## 2. 量化分析 (Analysis & Backtest)
+### 2. 量化分析 (Analysis & Backtest) (開發中)
 
 **路徑**: `/backtest`
 
@@ -30,7 +43,7 @@
 3. **策略參數**: 調整右側面板的策略參數 (Parameters)。
 4. **執行回測**: 點擊 "Run Backtest" 系統將計算權益曲線 (Equity Curve)、最大回撤 (MOD) 與夏普比率。
 
-## 3. 即時監控 (Live Monitor)
+### 3. 即時監控 (Live Monitor)
 
 **路徑**: `/monitor` (目前版本尚未開放)
 
@@ -38,11 +51,11 @@
 
 ---
 
-# Part 2: 管理員指南 (Admin's Guide)
+## Part 2: 管理員指南 (Admin's Guide)
 
 此區塊說明系統參數配置、數據源管理與故障排除，僅限管理員權限存取。
 
-## 1. 系統參數設定 (System Settings)
+### 1. 系統參數設定 (System Settings)
 
 **路徑**: `/settings`
 **權限**: 僅限管理員
@@ -56,7 +69,7 @@
 | `trade.risk.max_drawdown` | 每日最大虧損限制 (Kill Switch) | `0.05` (5%) |
 | `system.maintenance_mode` | 若設為 true，將停止所有自動下單 | `false` |
 
-## 2. 資料源管理 (Data Manager)
+### 2. 資料源管理 (Data Manager)
 
 **路徑**: `/data-manager`
 
@@ -64,11 +77,15 @@
   * **新增**: 在此輸入 API Key / Secret (系統採加密儲存)。
   * **測試**: 點擊 "Test Connection" 確認連線狀態與權限。
 
+* **歷史數據同步** (History Sync)
+  * 使用者可於 Data Manager 選擇交易對與時間範圍，觸發後端下載任務。
+  * 系統支援勾選「保留原始檔」，以利未來資料校正。
+
 * **數據維護** (Data Maintenance)
   * **手動同步**: 當自動排程 (Cron) 失敗時，可在此手動觸發 `Sync` 任務補 K 線資料。
   * **完整性檢查**: 檢視本地數據湖 (Parquet) 是否有缺漏。
 
-## 3. 故障排除 (Troubleshooting)
+### 3. 故障排除 (Troubleshooting)
 
 * **API 連線失敗** ("Network Error")
   1. 確認後端服務是否運行正常。

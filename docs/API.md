@@ -2,6 +2,17 @@
 
 所有 API 均基於 Django Ninja，預設前綴為 `/api`
 
+## ⚠️ AI Development Constraints (AI 開發限制)
+
+> **[IMPORTANT]**
+
+- All REST API endpoints **MUST** use the `ApiResponse[T] wrapper defined in `backend.core.schemas`.
+    1. ✅ **Correct**: `def get_item(...) -> ApiResponse[ItemSchema]:`
+    2. ❌ **Incorrect**: `def get_item(...) -> ItemSchema:`
+- **Error Handling**:
+    1. Use `django.shortcuts.get_object_or_404`.
+    2. For business logic errors, return `ApiResponse(code=-1, message="...") instead of raising 500 exceptions.
+
 ## 統一回應格式 (Envelope Pattern)
 
 為了前後端串接的一致性，所有 API (除特定二進位流或非標準介面) 皆採用以下 JSON 結構：
@@ -24,6 +35,16 @@ class ApiResponse(Schema, Generic[T]):
     message: str = "success"
     data: Optional[T] = None
 ```
+
+## 0. Authentication (身份驗證)
+
+系統採用 JWT (JSON Web Token) 進行驗證。
+
+| Method | Endpoint | 功能說明 | Body |
+| :--- | :--- | :--- | :--- |
+| **POST** | `/auth/token` | 登入並獲取 Access/Refresh Token | `{username, password}` |
+| **POST** | `/auth/token/refresh` | 刷新 Access Token | `{refresh}` |
+| **GET** | `/auth/me` | 獲取當前登入者資訊與權限群組 | - |
 
 ## 1. System Config (系統設定)
 
@@ -80,7 +101,7 @@ class SystemSettingListResponse(ApiSchema[list[SystemSettingOut]]):
 | **GET** | `/mkt/candles` | **【核心】** 讀取 K 線數據 (供前端繪圖) | `?symbol=BTC/USDT&tf=1h&start=...&end=...` | ⏳ 未開始 |
 | **GET** | `/mkt/sync-test` | 觸發下載並存檔 | - | 🚧 進行中 |
 | **POST** | `/mkt/sync` | 觸發手動數據補全任務 | `SyncRequest` | 🚧 進行中 |
-| **POST** | `/mkt//sync/history-bulk` | 下載歷史數據 | `HistorySyncRequest` | 🚧 進行中 |
+| **POST** | `/mkt//sync/history` | 下載歷史數據 | `HistorySyncRequest` | 🚧 進行中 |
 
 ### Market Data Schemas
 
@@ -100,6 +121,8 @@ class HistorySyncRequest(Schema):
     start_year: int = 2020
     end_year: int = 2023
     months: list[int] = []      # 若為空則下載整年
+    keep_raw: bool = True       # 是否保留原始檔
+    asset_class: str = "crypto" # 預留 TradFi 欄位
 
 # --- Output Schemas (Data Payload)
 
